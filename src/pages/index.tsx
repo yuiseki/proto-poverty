@@ -27,6 +27,11 @@ export const Home = (): JSX.Element => (
             貧困可視化：スター
           </a>
         </li>
+        <li>
+          <a css={link} href='/recharts'>
+            貧困可視化：Recharts
+          </a>
+        </li>
       </ul>
     </main>
   </div>
