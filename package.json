@@ -11,7 +11,8 @@
     "format": "prettier --write .",
     "lint": "eslint . --ext ts --ext tsx --ext js",
     "test": "jest",
-    "test-all": "yarn lint && yarn type-check && yarn test"
+    "test-all": "yarn lint && yarn type-check && yarn test",
+    "get-data": "node --loader ts-node/esm script/get.ts"
   },
   "husky": {
     "hooks": {
@@ -39,13 +40,15 @@
     "next": "latest",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-konva": "*"
+    "react-konva": "*",
+    "recharts": "^2.0.9"
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.3.0",
     "@testing-library/react": "^11.2.5",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.25",
+    "@types/node-fetch": "^2.5.10",
     "@types/react": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.14.2",
@@ -53,6 +56,7 @@
     "babel-jest": "^26.6.3",
     "babel-plugin-macros": "^2.8.0",
     "babel-plugin-module-resolver": "^4.1.0",
+    "dotenv": "^8.2.0",
     "eslint": "^7.19.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-react": "^7.19.0",
@@ -61,9 +65,11 @@
     "jest": "^26.6.3",
     "jest-watch-typeahead": "^0.6.1",
     "lint-staged": "^10.0.10",
+    "node-fetch": "^2.6.1",
     "postcss": "^8.2.13",
     "prettier": "^2.0.2",
     "tailwindcss": "^2.1.2",
+    "ts-node": "^9.1.1",
     "twin.macro": "^2.4.1",
     "typescript": "^4.1.3"
   }
