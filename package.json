@@ -36,11 +36,15 @@
     "@emotion/react": "^11.1.5",
     "@emotion/server": "^11.0.0",
     "@emotion/styled": "^11.3.0",
+    "@moneyforward/stream-util": "^0.1.4",
+    "commander": "^6.2.1",
     "konva": "^7.2.5",
+    "mecab-async": "^0.1.2",
     "next": "latest",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-konva": "*",
+    "react-tagcloud": "^2.1.1",
     "recharts": "^2.0.9"
   },
   "devDependencies": {

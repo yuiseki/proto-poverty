@@ -32,6 +32,11 @@ export const Home = (): JSX.Element => (
             貧困可視化：Recharts
           </a>
         </li>
+        <li>
+          <a css={link} href='/words'>
+            貧困可視化：ワードクラウド
+          </a>
+        </li>
       </ul>
     </main>
   </div>

@@ -25,7 +25,7 @@ const Recharts = () => (
     <div css={container}>
       <main>
         <h1 tw='text-5xl text-white font-bold'>貧困可視化：Recharts</h1>
-        <h2 tw='text-white'>
+        <h2 tw='text-3xl text-white'>
           東京都の生活保護被保護実人員（月平均人口千人当たり）
         </h2>
         <ResponsiveContainer width='95%' height={600}>
