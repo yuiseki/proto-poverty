@@ -1,14 +1,16 @@
 /// <reference types="@emotion/react/types/css-prop" />
-import tw, { css } from 'twin.macro'
-import { Stage, Layer, Star, Group, Label, Tag, Text } from 'react-konva'
 import React, { useEffect, useState } from 'react'
+React.useLayoutEffect = useEffect
+import tw, { css } from 'twin.macro'
 import Head from 'next/head'
+import { Stage, Layer, Star, Group, Label, Tag, Text } from 'react-konva'
 
 const generateStars = (width, height) => {
   return [...Array(40)].map((_, i) => ({
     id: i.toString(),
     x: Math.random() * width,
     y: Math.random() * height,
+    opacity: Math.random(),
     rotation: Math.random() * 180,
   }))
 }
@@ -17,11 +19,12 @@ interface StarProps {
   id: string
   x: number
   y: number
+  opacity: number
   rotation: number
-  isDragging: boolean
 }
 const MyStar: React.VFC<StarProps> = (star) => {
   const [isMouseHover, setIsMouseHover] = useState(false)
+
   const handleMouseEnter = () => {
     setIsMouseHover(true)
   }
@@ -39,7 +42,7 @@ const MyStar: React.VFC<StarProps> = (star) => {
         innerRadius={20}
         outerRadius={40}
         fill="yellow"
-        opacity={0.6}
+        opacity={star.opacity}
         rotation={star.rotation}
         shadowColor="black"
         shadowBlur={10}
@@ -107,7 +110,7 @@ const container = css`
   ${tw`mx-auto m-4 p-4 rounded bg-gray-800`}
 `
 
-export const Home = (): JSX.Element => (
+export const Stars = (): JSX.Element => (
   <>
     <Head>
       <title>貧困可視化：スター</title>
@@ -121,4 +124,4 @@ export const Home = (): JSX.Element => (
   </>
 )
 
-export default Home
+export default Stars
