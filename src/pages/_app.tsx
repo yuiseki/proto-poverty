@@ -20,9 +20,7 @@ const globalStyles = css`
 const App = ({ Component, pageProps }: AppProps) => (
   <>
     <Head>
-      <title>
-        Nextjs App with TypeScript, ESlint, Jest, Emotion, Tailwind and Twin
-      </title>
+      <title>貧困可視化プロトタイプ</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <GlobalStyles />
