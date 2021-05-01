@@ -1,9 +1,9 @@
 /// <reference types="@emotion/react/types/css-prop" />
-import React, { useEffect, useState } from 'react'
-React.useLayoutEffect = useEffect
-import tw, { css } from 'twin.macro'
-import Head from 'next/head'
-import { Stage, Layer, Star, Group, Label, Tag, Text } from 'react-konva'
+import React, { useEffect, useState } from 'react';
+React.useLayoutEffect = useEffect;
+import tw, { css } from 'twin.macro';
+import Head from 'next/head';
+import { Stage, Layer, Star, Group, Label, Tag, Text } from 'react-konva';
 
 const generateStars = (width, height) => {
   return [...Array(40)].map((_, i) => ({
@@ -12,25 +12,25 @@ const generateStars = (width, height) => {
     y: Math.random() * height,
     opacity: Math.random(),
     rotation: Math.random() * 180,
-  }))
-}
+  }));
+};
 
 interface StarProps {
-  id: string
-  x: number
-  y: number
-  opacity: number
-  rotation: number
+  id: string;
+  x: number;
+  y: number;
+  opacity: number;
+  rotation: number;
 }
 const MyStar: React.VFC<StarProps> = (star) => {
-  const [isMouseHover, setIsMouseHover] = useState(false)
+  const [isMouseHover, setIsMouseHover] = useState(false);
 
   const handleMouseEnter = () => {
-    setIsMouseHover(true)
-  }
+    setIsMouseHover(true);
+  };
   const handleMouseLeave = () => {
-    setIsMouseHover(false)
-  }
+    setIsMouseHover(false);
+  };
 
   return (
     <Group>
@@ -41,10 +41,10 @@ const MyStar: React.VFC<StarProps> = (star) => {
         numPoints={5}
         innerRadius={20}
         outerRadius={40}
-        fill="yellow"
+        fill='yellow'
         opacity={star.opacity}
         rotation={star.rotation}
-        shadowColor="black"
+        shadowColor='black'
         shadowBlur={10}
         shadowOpacity={0.6}
         shadowOffsetX={isMouseHover ? 10 : 5}
@@ -58,42 +58,42 @@ const MyStar: React.VFC<StarProps> = (star) => {
         id={star.id}
         x={star.x + 20}
         y={star.y}
-        fill="white"
+        fill='white'
         opacity={isMouseHover ? 1 : 0}
       >
         <Tag
-          fill="white"
-          pointerDirection="left"
+          fill='white'
+          pointerDirection='left'
           pointerWidth={20}
           pointerHeight={28}
-          lineJoin="round"
+          lineJoin='round'
         />
-        <Text text="貧困に関する悩み" fontSize={18} padding={5} />
+        <Text text='貧困に関する悩み' fontSize={18} padding={5} />
       </Label>
     </Group>
-  )
-}
+  );
+};
 
 const StarMap = (): JSX.Element => {
-  const [width, setWidth] = useState<number>()
-  const [height, setHeight] = useState<number>()
-  const [stars, setStars] = useState([])
+  const [width, setWidth] = useState<number>();
+  const [height, setHeight] = useState<number>();
+  const [stars, setStars] = useState([]);
 
   useEffect(() => {
     const updateSize = () => {
-      setWidth(window.innerWidth - 60)
-      setHeight(window.innerHeight - 200)
-    }
-    updateSize()
-    window.addEventListener('resize', updateSize)
+      setWidth(window.innerWidth - 60);
+      setHeight(window.innerHeight - 200);
+    };
+    updateSize();
+    window.addEventListener('resize', updateSize);
     return () => {
-      window.removeEventListener('resize', updateSize)
-    }
-  }, [])
+      window.removeEventListener('resize', updateSize);
+    };
+  }, []);
 
   useEffect(() => {
-    setStars(generateStars(width, height))
-  }, [width, height])
+    setStars(generateStars(width, height));
+  }, [width, height]);
 
   return (
     <Stage width={width} height={height}>
@@ -103,12 +103,12 @@ const StarMap = (): JSX.Element => {
         ))}
       </Layer>
     </Stage>
-  )
-}
+  );
+};
 
 const container = css`
   ${tw`mx-auto m-4 p-4 rounded bg-gray-800`}
-`
+`;
 
 export const Stars = (): JSX.Element => (
   <>
@@ -117,11 +117,11 @@ export const Stars = (): JSX.Element => (
     </Head>
     <div css={container}>
       <main>
-        <h1 tw="text-5xl text-white font-bold">貧困可視化：スター</h1>
+        <h1 tw='text-5xl text-white font-bold'>貧困可視化：スター</h1>
         <StarMap />
       </main>
     </div>
   </>
-)
+);
 
-export default Stars
+export default Stars;

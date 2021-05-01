@@ -1,7 +1,7 @@
-import Head from 'next/head'
-import { GlobalStyles, css } from 'twin.macro'
-import { Global } from '@emotion/react'
-import { AppProps } from 'next/app'
+import Head from 'next/head';
+import { GlobalStyles, css } from 'twin.macro';
+import { Global } from '@emotion/react';
+import { AppProps } from 'next/app';
 
 const globalStyles = css`
   html,
@@ -15,18 +15,18 @@ const globalStyles = css`
   * {
     box-sizing: border-box;
   }
-`
+`;
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>
     <Head>
       <title>貧困可視化プロトタイプ</title>
-      <link rel="icon" href="/favicon.ico" />
+      <link rel='icon' href='/favicon.ico' />
     </Head>
     <GlobalStyles />
     <Global styles={globalStyles} />
     <Component {...pageProps} />
   </>
-)
+);
 
-export default App
+export default App;
