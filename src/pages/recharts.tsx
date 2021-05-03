@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
+import tw, { css } from 'twin.macro';
 import {
   LineChart,
   XAxis,
@@ -9,7 +10,6 @@ import {
   YAxis,
   ResponsiveContainer,
 } from 'recharts';
-import tw, { css } from 'twin.macro';
 
 import data from '../data/test.json';
 
