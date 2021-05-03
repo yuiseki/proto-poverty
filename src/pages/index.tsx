@@ -38,7 +38,7 @@ export const Home = (): JSX.Element => (
           </a>
         </li>
         <li>
-          <a css={link} href='/Bubbles'>
+          <a css={link} href='/bubbles'>
             貧困可視化：バブルチャート
           </a>
         </li>
