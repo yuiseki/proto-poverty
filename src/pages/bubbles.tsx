@@ -59,8 +59,9 @@ const Bubbles = () => {
             <XAxis tick={{ fill: 'white' }} type='number' dataKey='income'>
               <Label
                 value='年収'
-                position='bottom'
                 offset={5}
+                position='bottom'
+                fill='white'
                 style={{ fontSize: '30px' }}
               />
             </XAxis>
@@ -69,6 +70,7 @@ const Bubbles = () => {
                 value='年齢'
                 offset={-15}
                 position='left'
+                fill='white'
                 style={{ fontSize: '30px' }}
               />
             </YAxis>
