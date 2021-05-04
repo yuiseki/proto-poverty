@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import tw, { css } from 'twin.macro';
 import {
   CartesianGrid,
@@ -14,30 +14,32 @@ import {
   ZAxis,
 } from 'recharts';
 
-const data: Array<{
-  age: number;
-  income: number;
-  satisfaction: number;
-}> = [
-  { age: 18, income: 100, satisfaction: 3 },
-  { age: 21, income: 200, satisfaction: 6 },
-  { age: 22, income: 300, satisfaction: 8 },
-  { age: 25, income: 250, satisfaction: 6 },
-  { age: 30, income: 1000, satisfaction: 9 },
-  { age: 40, income: 300, satisfaction: 7 },
-  { age: 50, income: 390, satisfaction: 1 },
-  { age: 60, income: 1000, satisfaction: 10 },
-  { age: 70, income: 300, satisfaction: 6 },
-  { age: 80, income: 300, satisfaction: 7 },
-];
+import data from '../data/people/data.json';
+const years = Object.keys(data);
 
-const colors = ['red', 'green', 'blue', 'yellow', 'magenta', 'white', 'cyan'];
+//const colors = ['red', 'green', 'blue', 'yellow', 'magenta', 'white', 'cyan'];
+const colors = ['yellow'];
 
 const container = css`
   ${tw`mx-auto m-4 p-4 rounded bg-gray-600`}
 `;
 
 const Bubbles = () => {
+  const [year, setYear] = useState(years[0]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setYear((prevYear) => {
+        if (years.indexOf(prevYear) === years.length - 1) {
+          return years[0];
+        } else {
+          return years[years.indexOf(prevYear) + 1];
+        }
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       <Head>
@@ -45,7 +47,7 @@ const Bubbles = () => {
       </Head>
       <div css={container}>
         <h1 tw='text-5xl text-white font-bold'>貧困可視化：バブルチャート</h1>
-        <h2 tw='text-3xl text-white'></h2>
+        <h2 tw='text-3xl text-white'>{year}年</h2>
         <ResponsiveContainer width='95%' height={800}>
           <ScatterChart
             margin={{
@@ -88,12 +90,12 @@ const Bubbles = () => {
             />
             <Scatter
               name='Satisfaction'
-              data={data}
+              data={data[year]}
               fill='yellow'
               fillOpacity={0.5}
               shape='star'
             >
-              {data.map((entry, index) => {
+              {data[year].map((entry, index) => {
                 return (
                   <Cell
                     key={`cell-${index}`}
