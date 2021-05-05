@@ -23,11 +23,6 @@ export const Home = (): JSX.Element => (
       <h1 tw='text-5xl text-white font-bold'>貧困可視化プロトタイプ</h1>
       <ul css={list}>
         <li>
-          <a css={link} href='/stars'>
-            貧困可視化：スター
-          </a>
-        </li>
-        <li>
           <a css={link} href='/recharts'>
             貧困可視化：Recharts
           </a>

@@ -102,11 +102,16 @@ const Bubbles = () => {
   return (
     <>
       <Head>
-        <title>貧困可視化：バブルチャート</title>
+        <title>貧困可視化：スターチャート</title>
       </Head>
       <div css={container}>
         <div css={headerContainer}>
-          <h1 tw='text-5xl text-white font-bold'>貧困可視化：バブルチャート</h1>
+          <h1 tw='text-5xl text-white font-bold'>貧困可視化：スターチャート</h1>
+          <h2 tw='text-4xl text-white'>
+            様々な人々の年齢・年収と生活の満足度を可視化した図です。
+            星の大きさが生活の満足度です。
+            年ごとに経済状況が変化して生活の満足度が移り変わっていく様子を知ることができます。
+          </h2>
           <h2 tw='text-4xl text-white'>{year}年</h2>
           <label
             htmlFor='auto-checkbox'
