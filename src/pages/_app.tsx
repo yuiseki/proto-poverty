@@ -6,14 +6,26 @@ import { AppProps } from 'next/app';
 const globalStyles = css`
   html,
   body {
-    padding: 0;
-    margin: 0;
+    box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
 
-  * {
-    box-sizing: border-box;
+  html {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+  }
+
+  body {
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 98%;
+  }
+
+  body > div:first-of-type,
+  div#__next {
+    height: 100%;
   }
 `;
 
