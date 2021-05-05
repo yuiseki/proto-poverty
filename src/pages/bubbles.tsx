@@ -70,7 +70,7 @@ const container = css`
 `;
 
 const headerContainer = css`
-  height: 10em;
+  height: 15em;
   width: 100%;
 `;
 
@@ -102,11 +102,13 @@ const Bubbles = () => {
   return (
     <>
       <Head>
-        <title>貧困可視化：スターチャート</title>
+        <title>貧困可視化プロトタイプ：スターチャート</title>
       </Head>
       <div css={container}>
         <div css={headerContainer}>
-          <h1 tw='text-5xl text-white font-bold'>貧困可視化：スターチャート</h1>
+          <h1 tw='text-5xl text-white font-bold'>
+            貧困可視化プロトタイプ：スターチャート
+          </h1>
           <h2 tw='text-4xl text-white'>
             様々な人々の年齢・年収と生活の満足度を可視化した図です。
             星の大きさが生活の満足度です。

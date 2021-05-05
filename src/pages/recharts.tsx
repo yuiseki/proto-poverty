@@ -20,7 +20,7 @@ const container = css`
 const Recharts = () => (
   <>
     <Head>
-      <title>貧困可視化：Recharts</title>
+      <title>貧困可視化プロトタイプ：Recharts</title>
     </Head>
     <div css={container}>
       <main>

@@ -113,7 +113,7 @@ const container = css`
 export const Stars = (): JSX.Element => (
   <>
     <Head>
-      <title>貧困可視化：スター</title>
+      <title>貧困可視化プロトタイプ：スター</title>
     </Head>
     <div css={container}>
       <main>

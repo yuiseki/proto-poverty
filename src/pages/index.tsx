@@ -24,17 +24,17 @@ export const Home = (): JSX.Element => (
       <ul css={list}>
         <li>
           <a css={link} href='/recharts'>
-            貧困可視化：Recharts
+            貧困可視化プロトタイプ：Recharts
           </a>
         </li>
         <li>
           <a css={link} href='/words'>
-            貧困可視化：ワードクラウド
+            貧困可視化プロトタイプ：ワードクラウド
           </a>
         </li>
         <li>
           <a css={link} href='/bubbles'>
-            貧困可視化：バブルチャート
+            貧困可視化プロトタイプ：バブルチャート
           </a>
         </li>
       </ul>

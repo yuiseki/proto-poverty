@@ -12,7 +12,7 @@ const container = css`
 const Words = () => (
   <>
     <Head>
-      <title>貧困可視化：ワードクラウド</title>
+      <title>貧困可視化プロトタイプ：ワードクラウド</title>
     </Head>
     <div css={container}>
       <h1 tw='text-5xl text-white font-bold'>貧困可視化：ワードクラウド</h1>
