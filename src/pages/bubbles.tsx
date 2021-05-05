@@ -5,14 +5,20 @@ import {
   CartesianGrid,
   Cell,
   Label,
+  //LabelList,
   ResponsiveContainer,
   Scatter,
   ScatterChart,
   Tooltip,
+  TooltipProps,
   XAxis,
   YAxis,
   ZAxis,
 } from 'recharts';
+import {
+  NameType,
+  ValueType,
+} from 'recharts/types/component/DefaultTooltipContent';
 
 import data from '../data/people/data.json';
 const years = Object.keys(data);
@@ -20,15 +26,68 @@ const years = Object.keys(data);
 //const colors = ['red', 'green', 'blue', 'yellow', 'magenta', 'white', 'cyan'];
 const colors = ['yellow'];
 
+const CustomizedTooltip = (props: TooltipProps<ValueType, NameType>) => {
+  if (!props.active || !props.payload[0]) {
+    return null;
+  }
+  const values = props.payload[0].payload;
+  const newPayload = [
+    {
+      name: '年齢',
+      value: values.age,
+    },
+    {
+      name: '年収',
+      value: values.income,
+    },
+    {
+      name: 'ジェンダー',
+      value: values.gender,
+    },
+    {
+      name: '情報',
+      value: values.information,
+    },
+  ];
+  return (
+    <div tw='bg-white p-1 w-52'>
+      {newPayload.map((p) => {
+        return (
+          <div key={p.name} tw='m-1'>
+            {p.name}: {p.value}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
 const container = css`
-  ${tw`mx-auto m-4 p-4 rounded bg-gray-600`}
+  height: 98%;
+  display: flex;
+  flex-direction: column;
+  ${tw`m-4 p-4 rounded bg-gray-600`}
+`;
+
+const headerContainer = css`
+  height: 10em;
+  width: 100%;
+`;
+
+const innerContainer = css`
+  height: 100%;
+  width: 100%;
 `;
 
 const Bubbles = () => {
   const [year, setYear] = useState(years[0]);
+  const [auto, setAuto] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
+      if (!auto) {
+        return;
+      }
       setYear((prevYear) => {
         if (years.indexOf(prevYear) === years.length - 1) {
           return years[0];
@@ -38,7 +97,7 @@ const Bubbles = () => {
       });
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [auto]);
 
   return (
     <>
@@ -46,67 +105,106 @@ const Bubbles = () => {
         <title>貧困可視化：バブルチャート</title>
       </Head>
       <div css={container}>
-        <h1 tw='text-5xl text-white font-bold'>貧困可視化：バブルチャート</h1>
-        <h2 tw='text-3xl text-white'>{year}年</h2>
-        <ResponsiveContainer width='95%' height={800}>
-          <ScatterChart
-            margin={{
-              top: 100,
-              right: 100,
-              bottom: 60,
-              left: 50,
-            }}
+        <div css={headerContainer}>
+          <h1 tw='text-5xl text-white font-bold'>貧困可視化：バブルチャート</h1>
+          <h2 tw='text-4xl text-white'>{year}年</h2>
+          <label
+            htmlFor='auto-checkbox'
+            tw='h-8 mt-2 mb-2 block content-center'
           >
-            <CartesianGrid />
-            <XAxis tick={{ fill: 'white' }} type='number' dataKey='income'>
-              <Label
-                value='年収'
-                offset={5}
-                position='bottom'
-                fill='white'
-                style={{ fontSize: '30px' }}
-              />
-            </XAxis>
-            <YAxis tick={{ fill: 'white' }} type='number' dataKey='age'>
-              <Label
-                value='年齢'
-                offset={-15}
-                position='left'
-                fill='white'
-                style={{ fontSize: '30px' }}
-              />
-            </YAxis>
-            <ZAxis
-              type='number'
-              dataKey='satisfaction'
-              range={[400, 5000]}
-              scale='pow'
-            />
-            <Tooltip
-              labelFormatter={() => {
-                return '';
+            <input
+              id='auto-checkbox'
+              type='checkbox'
+              defaultChecked={auto}
+              onClick={() => {
+                setAuto(!auto);
               }}
-              cursor={{ strokeDasharray: '3 3' }}
+              tw='w-8 h-6 mr-1'
             />
-            <Scatter
-              name='Satisfaction'
-              data={data[year]}
-              fill='yellow'
-              fillOpacity={0.5}
-              shape='star'
+            <span tw='text-white text-3xl'>自動アニメーション</span>
+          </label>
+          <input
+            type='range'
+            min={years[0]}
+            max={years[years.length - 1]}
+            value={year}
+            onChange={(e) => {
+              setYear(e.target.value);
+            }}
+            step='1'
+            tw='w-full h-5'
+          />
+        </div>
+        <div css={innerContainer}>
+          <ResponsiveContainer>
+            <ScatterChart
+              margin={{
+                top: 20,
+                right: 50,
+                bottom: 60,
+                left: 50,
+              }}
             >
-              {data[year].map((entry, index) => {
-                return (
-                  <Cell
-                    key={`cell-${index}`}
-                    fillOpacity={entry.satisfaction / 10}
-                    fill={colors[index % colors.length]}
-                  />
-                );
-              })}
-            </Scatter>
-          </ScatterChart>
-        </ResponsiveContainer>
+              <CartesianGrid />
+              <XAxis tick={{ fill: 'white' }} type='number' dataKey='income'>
+                <Label
+                  value='年収'
+                  offset={5}
+                  position='bottom'
+                  fill='white'
+                  style={{ fontSize: '30px' }}
+                />
+              </XAxis>
+              <YAxis
+                tick={{ fill: 'white' }}
+                domain={[0, 100]}
+                type='number'
+                dataKey='age'
+              >
+                <Label
+                  value='年齢'
+                  offset={-15}
+                  position='left'
+                  fill='white'
+                  style={{ fontSize: '30px' }}
+                />
+              </YAxis>
+              <ZAxis
+                type='number'
+                dataKey='satisfaction'
+                range={[400, 5000]}
+                scale='pow'
+              />
+              <Tooltip
+                labelFormatter={() => {
+                  return '';
+                }}
+                content={<CustomizedTooltip />}
+                cursor={{ strokeDasharray: '3 3' }}
+              />
+              <Scatter
+                name='Satisfaction'
+                data={data[year]}
+                fill='yellow'
+                fillOpacity={0.5}
+                shape='star'
+              >
+                {/*
+              <LabelList dataKey='id' style={{ pointerEvents: 'none' }} />;
+              */}
+                {data[year].map((entry, index) => {
+                  return (
+                    <Cell
+                      key={`cell-${index}`}
+                      fillOpacity={entry.satisfaction / 10}
+                      fill={colors[index % colors.length]}
+                    />
+                  );
+                })}
+              </Scatter>
+            </ScatterChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     </>
   );
