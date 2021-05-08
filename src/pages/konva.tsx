@@ -117,7 +117,9 @@ export const Stars = (): JSX.Element => (
     </Head>
     <div css={container}>
       <main>
-        <h1 tw='text-5xl text-white font-bold'>貧困可視化：スター</h1>
+        <h1 tw='text-5xl text-white font-bold'>
+          貧困可視化プロトタイプ：スター
+        </h1>
         <StarMap />
       </main>
     </div>
