@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
-import tw, { css } from 'twin.macro';
+import 'twin.macro';
 
 import Graph from 'react-graph-vis';
 
