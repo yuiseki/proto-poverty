@@ -25,4 +25,3 @@ const Words = () => (
 );
 
 export default Words;
-
