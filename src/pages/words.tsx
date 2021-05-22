@@ -5,19 +5,6 @@ import { TagCloud } from 'react-tagcloud';
 
 import data from '../data/voice_single_mother_2020_08_words.json';
 
-export async function getStaticProps() {
-  // fetch list of posts
-  const response = await fetch(
-    'https://jsonplaceholder.typicode.com/posts?_page=1'
-  )
-  const postList = await response.json()
-  return {
-    props: {
-      postList,
-    },
-  }
-}
-
 const Words = () => (
   <>
     <Head>
