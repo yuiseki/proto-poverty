@@ -54,7 +54,7 @@ const innerContainer = css`
   width: 100%;
 `;
 
-const Network = () => {
+const Network: React.VFC = () => {
   return (
     <>
       <Head>
