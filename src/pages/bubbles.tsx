@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
-import tw, { css } from 'twin.macro';
+import 'twin.macro';
 import {
   CartesianGrid,
   Cell,
@@ -62,23 +62,6 @@ const CustomizedTooltip = (props: TooltipProps<ValueType, NameType>) => {
   );
 };
 
-const container = css`
-  height: 98%;
-  display: flex;
-  flex-direction: column;
-  ${tw`m-4 p-4 rounded bg-gray-600`}
-`;
-
-const headerContainer = css`
-  height: 15em;
-  width: 100%;
-`;
-
-const innerContainer = css`
-  height: 100%;
-  width: 100%;
-`;
-
 const Bubbles = () => {
   const [year, setYear] = useState(years[0]);
   const [auto, setAuto] = useState(true);
@@ -104,8 +87,8 @@ const Bubbles = () => {
       <Head>
         <title>貧困可視化プロトタイプ：スターチャート</title>
       </Head>
-      <div css={container}>
-        <div css={headerContainer}>
+      <div tw="h-full flex flex-col m-4 p-4 rounded bg-gray-600">
+        <div tw="h-64 w-full">
           <h1 tw='text-5xl text-white font-bold'>
             貧困可視化プロトタイプ：スターチャート
           </h1>
@@ -142,7 +125,7 @@ const Bubbles = () => {
             tw='w-full h-5'
           />
         </div>
-        <div css={innerContainer}>
+        <div tw="h-full w-full">
           <ResponsiveContainer>
             <ScatterChart
               margin={{
