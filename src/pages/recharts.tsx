@@ -13,16 +13,12 @@ import {
 
 import data from '../data/test.json';
 
-const container = css`
-  ${tw`mx-auto m-4 p-4 rounded bg-gray-600`}
-`;
-
 const Recharts = () => (
   <>
     <Head>
       <title>貧困可視化プロトタイプ：Recharts</title>
     </Head>
-    <div css={container}>
+    <div tw="mx-auto m-4 p-4 rounded bg-gray-600">
       <main>
         <h1 tw='text-5xl text-white font-bold'>貧困可視化：Recharts</h1>
         <h2 tw='text-3xl text-white'>

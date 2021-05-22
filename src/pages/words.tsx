@@ -1,20 +1,29 @@
 import Head from 'next/head';
 import React from 'react';
-import tw, { css } from 'twin.macro';
+import 'twin.macro';
 import { TagCloud } from 'react-tagcloud';
 
 import data from '../data/voice_single_mother_2020_08_words.json';
 
-const container = css`
-  ${tw`mx-auto m-4 p-4 rounded bg-gray-600`}
-`;
+export async function getStaticProps() {
+  // fetch list of posts
+  const response = await fetch(
+    'https://jsonplaceholder.typicode.com/posts?_page=1'
+  )
+  const postList = await response.json()
+  return {
+    props: {
+      postList,
+    },
+  }
+}
 
 const Words = () => (
   <>
     <Head>
       <title>貧困可視化プロトタイプ：ワードクラウド</title>
     </Head>
-    <div css={container}>
+    <div tw="mx-auto m-4 p-4 rounded bg-gray-600">
       <h1 tw='text-5xl text-white font-bold'>貧困可視化：ワードクラウド</h1>
       <h2 tw='text-3xl text-white'>
         <a href='https://note.com/single_mama_pj/n/n83bb1e08b706'>
@@ -29,3 +38,4 @@ const Words = () => (
 );
 
 export default Words;
+
