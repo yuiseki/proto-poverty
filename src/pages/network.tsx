@@ -4,6 +4,8 @@ import tw, { css } from 'twin.macro';
 
 import Graph from 'react-graph-vis';
 
+import graph from '../data/voice_single_mother_2020_08_word_net.json';
+/*
 interface INode {
   id: number;
   label: string;
@@ -18,20 +20,22 @@ interface IGraph {
   edges: IEdge[];
 }
 const graph: IGraph = {
-  nodes: [...Array(500)].map((_, i) => {
+  nodes: [...Array(50)].map((_, i) => {
     return {
       id: i,
       label: `label ${i}`,
       title: `title ${i}`,
     };
   }),
-  edges: [...Array(500)].map((_, i) => {
+  edges: [...Array(50)].map((_, i) => {
     return {
       from: i,
-      to: Math.floor(Math.random() * 500),
+      to: Math.floor(Math.random() * 50),
+      length: Math.floor(Math.random() * 100),
     };
   }),
 };
+*/
 
 const NetworkDiagram = () => {
   return <Graph graph={graph} />;
